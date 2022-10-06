@@ -1,16 +1,15 @@
-import express from "express";
+import express from 'express';
+import { shortenerService } from '../services';
 
 const router = express.Router();
 
-const shortenerService = require("../services/shortener");
-
-router.post("/shortener", (req, res) => {
+router.post('/shortener', (req, res) => {
   let { originalUrl } = req.body;
 
   try {
     originalUrl = new URL(originalUrl);
   } catch (err) {
-    return res.status(404).json({ error: "Invalid url" });
+    return res.status(404).json({ error: 'Invalid url' });
   }
 
   let shortUrl = shortenerService.getShortUrl(originalUrl.href);
@@ -27,4 +26,4 @@ router.post("/shortener", (req, res) => {
   return res.status(200).json({ newUrl: shortUrl });
 });
 
-module.exports = router;
+export const api = router;

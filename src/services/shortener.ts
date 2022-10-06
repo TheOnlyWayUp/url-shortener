@@ -35,7 +35,5 @@ export const getShortUrl = (originalUrl: string) => {
  * @param {String} shortUrl The shorten url.
  */
 export const addUrl = (originalUrl: string, shortUrl: string) => {
-  // @ts-ignore
-
   global.URL_DICT[shortUrl] = originalUrl;
 };
